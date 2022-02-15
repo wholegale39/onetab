@@ -15,10 +15,10 @@
             一个用于 Windows 最佳命令行软件管理器<a
                 href="https://github.com/lukesampson/scoop"
                 >Scoop</a
-            >的脚本仓库：持续助力科研
+            >的脚本仓库：测试工程师专属软件桶
         </p>
         <p align="left">
-            <a href="README_CN.md">简体中文</a>
+            <a href="README.md">简体中文</a>
         </p>
     </div>
 </body>
