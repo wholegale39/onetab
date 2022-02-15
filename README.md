@@ -1,124 +1,194 @@
-# Generic Shovel bucket
+<body>
+    <div align="left">
+        <h1 align="left">onetab</h1>
+        <p>
+            <a>
+                <img
+                    src="https://ci.appveyor.com/api/projects/status/3k5hn9361lyf5r6a?svg=true"
+                />
+            </a>
+        </p>
+    </div>
+    <p></p>
+    <div>
+        <p>
+            一个用于 Windows 最佳命令行软件管理器<a
+                href="https://github.com/lukesampson/scoop"
+                >Scoop</a
+            >的脚本仓库：持续助力科研
+        </p>
+        <p align="left">
+            <a href="README_CN.md">简体中文</a>
+        </p>
+    </div>
+</body>
 
-In this repository you will find everything you need to know about creating custom bucket with appveyor support.
+对于熟悉 Scoop 的用户：
 
-- [Files and helpers](#files-and-helpers)
-    - [`bucket` Folder](#bucket-folder)
-    - [`bin` Folder](#bin-folder)
-    - [`Bucket.Tests.ps1` File](#buckettestsps1-file)
-    - [`.vscode` Folder](#vscode-folder)
-    - [`.github` Folder](#github-folder)
-    - [`config files`](#config-files)
-- [How to use and adopt this bucket](#how-to-use-and-adopt-this-bucket)
+```powershell
+scoop bucket add onetab https://github.com/wholegale39/onetab
+```
 
-## Files and helpers
+# :running: 开始
 
-### `bucket` Folder
+## :bike: 安装 Scoop
 
-- All manifests belong here
-- `.gitkeep` file could be removed when you push your first manifest
+### :computer: 步骤 1：在 PowerShell 中打开远程权限
 
-### `bin` Folder
+```powershell
+Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+```
 
-If you need custom scripts you should create `bin` folder.
+### :gear: 步骤 2：自定义 Scoop 安装目录
 
-### `Bucket.Tests.ps1` File
+```powershell
+$env:SCOOP='Your_Scoop_Path'
+[Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
+```
 
-- Test which are executed inside Appveyor pipeline
-- Could be configured as `pre_commit` hook
+> 如果跳过该步骤， Scoop 将默认把所有用户安装的 App 和 Scoop 本身置于`c:/users/user_name/scoop`
 
-### `.vscode` Folder
+### :hammer: 步骤 3：下载并安装 Scoop
 
-Contains all syntax highlighting, code formating, manifest creating tools you could use.
+```powershell
+Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+```
 
-- Extensions
-    - All extensions which will save your time while writing manifests are in recommended sections
-    - You will be notified about installing them when you open project
-- Settings
-    - All settings are set to be compatible with Appveyor pipeline and upstream (official) repositories
-        - No need to worry about formating restrictions between repositories.
-- Code snippets
-    - > Code snippets are templates that make it easier to enter repeating code patterns, such as loops or conditional-statements.
-    - You could use workspace wide code snippets for speed up manifest creating
-    - While editing json file write partitial name of snippet and press `tab`
-    - Available Json snippets:
-        - `app`
-            - Create default manifest structure
-        - `appArch`
-            - Create default manifest structure with full acrchitecture
-        - `arch`
-            - Create only architecture property with 64bit and 32bit
-        - `upAr`
-            - Create autoupdate property with architecture
+### :book: 步骤 4：通过`scoop help`查看快速上手方法
 
-### `.github` Folder
+更多信息，请访问 Scoop 官网 👉 https://scoop.sh/ 👈
 
-GitHub repository configuration.
+## :car: 利用扩展库安装 App
 
-- `workflows` folder
-    - [GitHub Actions](https://github.com/features/actions) configuration for automatic issue/PR/updates handling
-    - Refer to [GithubActions repository](https://github.com/shovel-org/GithubActions) for more information
-- `CODEOWNERS`
-    - Pull requests will automatically request review for users defined in this file
-- `PULL REQUEST TEMPLATE`
-    - Prefilled pull request types with proper titles
-- `ISSUE TEMPLATE`
-    - The most used issue templates for users to select and prefilled with required information and labels
+### :train: 步骤 1：安装 Aria2 来加速下载
 
-### `config files`
+```powershell
+scoop install aria2
+```
 
-- `.appveyor.yml`
-    - Definition of Appveyor CI pipeline
-- `.editorconfig`
-    - Universal configuration file, compatible with all types of editors
-    - Defines how files should look
-- `.gitattributes`
-    - Simplifying line endings for git
-    - No need to configure `auto.clrf` setting on each clone or new workspaces
-- `Bucket.Tests.ps1`
-    - Test which are executed inside Appveyor pipeline
-    - Could be configured as `pre_commit` hook
+如果使用 VPN，需要通过如下命令关闭 aria2
 
-## How to use and adopt this bucket
+```powershell
+scoop config aria2-enabled false
+```
 
-1. Click on `Use this template` to create new repository in your account with same files
-1. Open project settings and **give your bucket new name**
-1. Add proper description of repository
-    - Information about what type of manifests could be found here
-1. Add `shovel-bucket` tag for repository
-    - If approved, your bucket could be part of <https://shovel.ash258.com> (Currently still Work-in-progress)
-1. Enable appveyor CI/CD
-    1. Register / Login to [Appveyor](https://ci.appveyor.com/login)
-    1. Click `New Project`
-    1. From Left Panel, choose your source control variant (Github)
-    1. From Right Panel, choose repository with bucket and click `+ Add`
-    1. 🎉 Project created and ready to build 🎉
-    1. Get Badge URL
-        1. Open Appveyor Project settings
-        1. Navigate to Badges
-        1. Copy `Branch Sample markdown code` snippet for further usage
-            - Only master branch is better, since you can freely test in other branches and do not mystificate users
-            - [You could use alternative styles](https://shields.io/category/build#styles)
-1. Clone project into some folder
-    - `git clone git@github.com:USER/REPO.git MyAwesomeBucket`
-    - or
-    - `git clone https://github.com/USER/REPO.git MyAwesomeBucket`
-1. Open vscode with this clone
-    - `code MyAwesomeBucket`
-1. _[optional]_ Configure remote repository
-    1. `git remote add 'upstream' 'https://github.com/Ash258/GenericBucket.git'`
-    - This step will allow you to synchronize changes with this template repository
-1. Create proper README.md
-    1. [Open this README in the browser for reference](https://github.com/shovel-org/GenericBucket/tree/main/README.md)
-    1. Open `README.template.md`
-    1. Replace all `%%templatestring%%` with real and according values
-        1. Replace appveyor status badge with yours
-            - See: <https://appveyor.com/docs/status-badges/>
-    1. Override this README with completed `README.template.md`
-    1. Remove template `README.template.md`
-1. Repository tweaks
-    1. Open `.github\CODEOWNERS` and change `@Ash258` to desired GitHub username
-    1. Actions
-        1. Open each file in `.github\workflows` and change `youremail@email.com` with your email
-        1. Visit <https://github.com/shovel-org/GithubActions> for more information
-1. 🎉🎉 Everything set. High quality and automated bucket is ready for new users 🎉🎉
+### :ticket: 步骤 2：安装 Git 来添加新仓库
+
+```powershell
+scoop install git
+```
+
+### :airplane: 步骤 3：添加本仓库并更新，么么哒~ :kiss:
+
+```powershell
+scoop bucket add onetab https://github.com/wholegale39/onetab
+scoop update
+```
+
+### :rocket: 步骤 4：安装 App
+
+- 使用 `scoop search` 命令搜索 App 的具体名称
+
+```powershell
+scoop search <app_name>
+```
+
+- 利用插件`scoop-completion`协助安装
+
+```powershell
+scoop install scoop-completion
+scoop install <app_name>
+```
+
+> 使用`scoop-completion`：键入 App 名称的前几个字母后敲击`tab`键进行补全
+
+### :100: 步骤 5：查看官方推荐仓库
+
+```powershell
+scoop bucket known
+
+main [默认]
+extras [墙裂推荐]
+versions
+nightlies
+nirsoft
+php
+nerd-fonts
+nonportable
+java
+games
+jetbrains
+```
+
+## :m: 其他
+
+### Aria2 的参数自定义
+
+```powershell
+# aria2 在 Scoop 中默认开启
+scoop config aria2-enabled true
+# 关于以下参数的作用，详见aria2的相关资料
+scoop config aria2-retry-wait 4
+scoop config aria2-split 16
+scoop config aria2-max-connection-per-server 16
+scoop config aria2-min-split-size 4M
+```
+
+## :star: 总结
+
+### 科研工具
+
+|          App          | 自动更新 | 原创                                                             |
+| :-------------------: | :------: | ---------------------------------------------------------------- |
+|    CopyTranslator     |    √     | √                                                                |
+|   GeoGebra-Portable   |    √     | √                                                                |
+|         Gephi         |    √     | √                                                                |
+|       Julia-cn        |    √     | √                                                                |
+|       KingDraw        |    √     | √                                                                |
+|        LogSeq         |    √     | √ 已迁移至 [Extras](https://github.com/lukesampson/scoop-extras) |
+|        LyX-cn         |    √     | √                                                                |
+| Mathpix Snipping Tool |    √     | √                                                                |
+|   Mendeley Desktop    |    √     | √                                                                |
+|     Miniconda-cn      |    √     | √                                                                |
+|        NetLogo        |    √     | √                                                                |
+|      SageMath-cn      |    √     | √                                                                |
+|        TeXLive        |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado)             |
+|       思源笔记        |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado)             |
+|         语雀          |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado)             |
+
+### 开发辅助
+
+|          App           | 自动更新 | 原创                                                                |
+| :--------------------: | :------: | ------------------------------------------------------------------- |
+|       Cyberduck        |    √     | √ 已迁移至 [Extras](https://github.com/lukesampson/scoop-extras)    |
+|    scoop-completion    |    √     | 拷贝自 [Moeologist](https://github.com/Moeologist/scoop-completion) |
+|         uTools         |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado)                |
+| VirtualBox [含扩展包]  |    √     | 拷贝自 [Ash258](https://github.com/Ash258/Scoop-Ash258)             |
+| VMware Workstation Pro |    √     | 拷贝自 [Ash258](https://github.com/Ash258/Scoop-Ash258)             |
+|         WinGet         |    √     | 拷贝自 [Ash258](https://github.com/Ash258/Scoop-Ash258)             |
+|      傲梅分区助手      |    √     | √                                                                   |
+
+### 日常办公
+
+|       App        | 自动更新 | 原创                                                 |
+| :--------------: | :------: | ---------------------------------------------------- |
+|  File Converter  |    √     | √                                                    |
+|  OBS Studio-cn   |    √     | √                                                    |
+| Office Tool Plus |    √     | √                                                    |
+|     RustDesk     |    √     | √                                                    |
+|   小狼毫输入法   |    √     | √                                                    |
+|  Wise Care 365   |    √     | √                                                    |
+|    WPSOffice     |    ×     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado) |
+|     百度网盘     |    √     | √                                                    |
+|     腾讯会议     |    ×     | 拷贝自 [sushi](https://github.com/kidonng/sushi/)    |
+
+### 社交休闲
+
+|     App      | 自动更新 | 原创                                                 |
+| :----------: | :------: | ---------------------------------------------------- |
+|     钉钉     |    √     | √                                                    |
+| 洛雪音乐助手 |    √     | √                                                    |
+|  网易云音乐  |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado) |
+|     微信     |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado) |
+|   magnetW    |    √     | √                                                    |
+|   You-Get    |    √     | √                                                    |

@@ -11,5 +11,5 @@ jobs:
     - name: Pull Request Validation
       uses: shovel-org/GithubActions@main
       env:
-        GITH_EMAIL: youremail@email.com
+        GITH_EMAIL: 295502313@163.com
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
