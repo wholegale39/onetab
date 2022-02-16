@@ -29,166 +29,300 @@
 scoop bucket add onetab https://github.com/wholegale39/onetab
 ```
 
-# :running: 开始
 
-## :bike: 安装 Scoop
 
-### :computer: 步骤 1：在 PowerShell 中打开远程权限
+## 安装 Scoop
+
+> 1、Windows 7 SP1+ / Windows Server 2008+
+>
+> 2、确保安装Powershell 3(或更高版本)
+>
+> 3、.NET Framework 4.5+(或更高版本)
+>
+> 4、必须为您的用户帐户启用PowerShell，并将执行策略设置为远程签名
+
+
+
+
+- 打开PowerShell执行以下命令确认Powershell版本
 
 ```powershell
-Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+PS C:\Users\wch> $psversiontable.psversion.major
+5
+
+PS C:\Users\wch> $host
+
+
+Name             : ConsoleHost
+Version          : 5.1.19041.1320
+InstanceId       : af599a82-f08b-4a1b-8039-ad57c9edd4f2
+UI               : System.Management.Automation.Internal.Host.InternalHostUserInterface
+CurrentCulture   : zh-CN
+CurrentUICulture : zh-CN
+PrivateData      : Microsoft.PowerShell.ConsoleHost+ConsoleColorProxy
+DebuggerEnabled  : True
+IsRunspacePushed : False
+Runspace         : System.Management.Automation.Runspaces.LocalRunspace
 ```
 
-### :gear: 步骤 2：自定义 Scoop 安装目录
+> 安装Powershell新版本
+>
+> https://docs.microsoft.com/zh-cn/powershell/scripting/windows-powershell/install/installing-windows-powershell?view=powershell-5.1
+
+
+
+![Win7升级Powershell 5.1](https://gitee.com/wholegale39/pictures_markdown/raw/master/20211208140312.png)
+
+![下载Powershell 5.1](https://gitee.com/wholegale39/pictures_markdown/raw/master/20211208141211.png)
+
+![下载Powershell 5.1对应版本](https://gitee.com/wholegale39/pictures_markdown/raw/master/20211208141257.png)
+
+![安装Powershell 5.1](https://gitee.com/wholegale39/pictures_markdown/raw/master/20211208141345.png)
+
+- 注意上述Powershell版本安装成功后需要重启计算机
+
+- 打开Powershell执行以下命令确认.NET Framework版本
 
 ```powershell
-$env:SCOOP='Your_Scoop_Path'
-[Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
+PS C:\Users\wch> (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client' -Name Version).Version
+4.8.04084
 ```
 
-> 如果跳过该步骤， Scoop 将默认把所有用户安装的 App 和 Scoop 本身置于`c:/users/user_name/scoop`
+> 安装.NET Framework新版本
+>
+> https://www.microsoft.com/zh-CN/download/details.aspx?id=30653
 
-### :hammer: 步骤 3：下载并安装 Scoop
+
+- PowerShell执行以下命令，选择A，回车确认
 
 ```powershell
-Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+PS C:\Users\wch> Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 ```
 
-### :book: 步骤 4：通过`scoop help`查看快速上手方法
 
-更多信息，请访问 Scoop 官网 👉 https://scoop.sh/ 👈
-
-## :car: 利用扩展库安装 App
-
-### :train: 步骤 1：安装 Aria2 来加速下载
+- PowerShell执行以下命令
 
 ```powershell
-scoop install aria2
+PS C:\Users\wch> iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 ```
 
-如果使用 VPN，需要通过如下命令关闭 aria2
+> 执行过程中可能会因为网络问题导致失败，可先科学上网
+
+
+- 等待安装成功，默认为`C:\Users\wch\scoop`目录
+
+![scoop](https://gitee.com/wholegale39/pictures_markdown/raw/master/20211027165521.png)
+
+
+- 如果下载scoop的过程中断，那么必须先删除`C:\Users\wch\scoop`文件夹，再执行以上命令安装。
+- 也可以自定义安装目录`D:\Applications\Scoop`
 
 ```powershell
-scoop config aria2-enabled false
+[environment]::setEnvironmentVariable('SCOOP', 'D:\Applications\Scoop', 'User')
+$env:SCOOP='D:\Applications\Scoop' # with this we don't need to close and reopen the console
+iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 ```
 
-### :ticket: 步骤 2：安装 Git 来添加新仓库
+- 或者自定义全局安装目录
 
 ```powershell
-scoop install git
+[environment]::setEnvironmentVariable('SCOOP_GLOBAL','F:\GlobalScoopApps','Machine')
+$env:SCOOP_GLOBAL='F:\GlobalScoopApps'
 ```
 
-### :airplane: 步骤 3：添加本仓库并更新，么么哒~ :kiss:
+> 自定义全局安装目录需要管理员权限
+
+
+- 接下来就可以愉快的安装你想用的各种软件
 
 ```powershell
-scoop bucket add onetab https://github.com/wholegale39/onetab
-scoop update
+scoop install maven openjdk gradle
 ```
 
-### :rocket: 步骤 4：安装 App
-
-- 使用 `scoop search` 命令搜索 App 的具体名称
+- 安装软件指定版本
 
 ```powershell
-scoop search <app_name>
+scoop install nodejs@13.14.0
 ```
 
-- 利用插件`scoop-completion`协助安装
+
+- 上述软件安装成功后会自动配置环境变量
+- 查看状态信息，在此之前未执行过update操作会自动触发update操作，执行完毕后提示待更新版本
 
 ```powershell
-scoop install scoop-completion
-scoop install <app_name>
+PS C:\Users\wch> scoop status
+
+PS C:\Users\wch> scoop status
+Scoop is up to date.
+Updates are available for:
+    sublime-text: 4-4113 -> 4-4121
+    typora: 0.11.8 -> 0.11.13
+Everything is ok!
 ```
 
-> 使用`scoop-completion`：键入 App 名称的前几个字母后敲击`tab`键进行补全
 
-### :100: 步骤 5：查看官方推荐仓库
+- 也可手动触发更新scoop及本地软件仓库
 
 ```powershell
-scoop bucket known
+PS C:\Users\wch> scoop update
+Updating 'main' bucket...
+ * df9e83391 1password-cli: Update to version 1.12.3                     66 minutes ago
+ * 6da9a1924 packer: Update to version 1.7.8                             4 hours ago
+ * a948e4817 edgedriver: Update to version 97.0.1058.0                   4 hours ago
+Scoop was updated successfully!
+```
 
-main [默认]
-extras [墙裂推荐]
+- 更新指定软件
+
+```powershell
+PS C:\Users\wch> scoop update maven
+```
+
+- 更新所有软件
+
+```powershell
+PS C:\Users\wch> scoop update *
+```
+
+
+- 更新版本后会遗留安装包，查询下载缓存
+
+```powershell
+PS C:\Users\wch> scoop cache
+```
+
+- 删除遗留安装包
+
+```powershell
+PS C:\Users\wch> scoop cache rm *
+```
+
+
+- 清除所有软件旧版本
+
+```powershell
+PS C:\Users\wch> scoop cleanup *
+```
+
+
+- 卸载软件
+
+```powershell
+PS C:\Users\wch> scoop uninstall maven
+```
+
+
+- 一次性卸载多个软件
+
+```powershell
+PS C:\Users\wch> scoop uninstall maven gradle ant xxx
+```
+
+
+- 卸载并清理软件数据
+
+```powershell
+PS C:\Users\wch> scoop uninstall -p maven
+```
+
+
+- 切换软件版本
+
+```powershell
+PS C:\Users\wch> scoop reset python27
+Resetting python27 (2.7.18).
+Linking ~\scoop\apps\python27\current => ~\scoop\apps\python27\2.7.18
+Creating shim for 'python'.
+Creating shim for 'pythonw'.
+Creating shim for 'python2'.
+Creating shim for 'idle'.
+WARN  Overwriting shim to idle.bat installed from python
+Creating shim for 'idle2'.
+PS C:\Users\wch> 
+```
+
+- 另外OracleJDK8、openjdk11也可随意切换
+
+
+- 查看官方维护的软件库
+
+```powershell
+PS C:\Users\wch> scoop bucket known
+main
+extras
 versions
-nightlies
+nightlies        
 nirsoft
 php
-nerd-fonts
-nonportable
+nerd-fonts       
+nonportable      
 java
 games
 jetbrains
 ```
 
-## :m: 其他
 
-### Aria2 的参数自定义
+- 为scoop添加额外bucket，欢迎star
 
 ```powershell
-# aria2 在 Scoop 中默认开启
-scoop config aria2-enabled true
-# 关于以下参数的作用，详见aria2的相关资料
-scoop config aria2-retry-wait 4
-scoop config aria2-split 16
-scoop config aria2-max-connection-per-server 16
-scoop config aria2-min-split-size 4M
+scoop bucket add onetab https://github.com/wholegale39/onetab
 ```
 
-## :star: 总结
+- 查看命令使用方法
 
-### 科研工具
+```powershell
+PS C:\Users\wch> scoop help uninstall
+```
 
-|          App          | 自动更新 | 原创                                                             |
-| :-------------------: | :------: | ---------------------------------------------------------------- |
-|    CopyTranslator     |    √     | √                                                                |
-|   GeoGebra-Portable   |    √     | √                                                                |
-|         Gephi         |    √     | √                                                                |
-|       Julia-cn        |    √     | √                                                                |
-|       KingDraw        |    √     | √                                                                |
-|        LogSeq         |    √     | √ 已迁移至 [Extras](https://github.com/lukesampson/scoop-extras) |
-|        LyX-cn         |    √     | √                                                                |
-| Mathpix Snipping Tool |    √     | √                                                                |
-|   Mendeley Desktop    |    √     | √                                                                |
-|     Miniconda-cn      |    √     | √                                                                |
-|        NetLogo        |    √     | √                                                                |
-|      SageMath-cn      |    √     | √                                                                |
-|        TeXLive        |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado)             |
-|       思源笔记        |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado)             |
-|         语雀          |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado)             |
+## 利用扩展库安装 App
 
-### 开发辅助
+- Aria2是一款开源下载工具，可帮助简化不同设备和服务器之间的下载过程。它支持磁力链接、BT种子、http等类型的文件下载，与迅雷及QQ旋风相比，Aria2有着优秀的性能及较低的资源占用,架构本身非常轻巧，通常只需要4兆字节（HTTP下载）到9兆字节（用于BitTorrent交互）之间。最重要的一点是Aria2完全免费！
 
-|          App           | 自动更新 | 原创                                                                |
-| :--------------------: | :------: | ------------------------------------------------------------------- |
-|       Cyberduck        |    √     | √ 已迁移至 [Extras](https://github.com/lukesampson/scoop-extras)    |
-|    scoop-completion    |    √     | 拷贝自 [Moeologist](https://github.com/Moeologist/scoop-completion) |
-|         uTools         |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado)                |
-| VirtualBox [含扩展包]  |    √     | 拷贝自 [Ash258](https://github.com/Ash258/Scoop-Ash258)             |
-| VMware Workstation Pro |    √     | 拷贝自 [Ash258](https://github.com/Ash258/Scoop-Ash258)             |
-|         WinGet         |    √     | 拷贝自 [Ash258](https://github.com/Ash258/Scoop-Ash258)             |
-|      傲梅分区助手      |    √     | √                                                                   |
+```powershell
+PS C:\Users\wch> scoop install aria2
+WARN  'aria2' (1.36.0-1) is already installed.
+Use 'scoop update aria2' to install a new version.
+PS C:\Users\wch>  
 
-### 日常办公
+# 默认为5
+PS C:\Users\wch> scoop config aria2-max-connection-per-server 10
 
-|       App        | 自动更新 | 原创                                                 |
-| :--------------: | :------: | ---------------------------------------------------- |
-|  File Converter  |    √     | √                                                    |
-|  OBS Studio-cn   |    √     | √                                                    |
-| Office Tool Plus |    √     | √                                                    |
-|     RustDesk     |    √     | √                                                    |
-|   小狼毫输入法   |    √     | √                                                    |
-|  Wise Care 365   |    √     | √                                                    |
-|    WPSOffice     |    ×     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado) |
-|     百度网盘     |    √     | √                                                    |
-|     腾讯会议     |    ×     | 拷贝自 [sushi](https://github.com/kidonng/sushi/)    |
+# 默认为5
+PS C:\Users\wch> scoop config aria2-split 10
 
-### 社交休闲
+# 其他参数均默认
+```
 
-|     App      | 自动更新 | 原创                                                 |
-| :----------: | :------: | ---------------------------------------------------- |
-|     钉钉     |    √     | √                                                    |
-| 洛雪音乐助手 |    √     | √                                                    |
-|  网易云音乐  |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado) |
-|     微信     |    √     | 拷贝自 [dorado](https://github.com/chawyehsu/dorado) |
-|   magnetW    |    √     | √                                                    |
-|   You-Get    |    √     | √                                                    |
+You can tweak the following `aria2` settings with the `scoop config` command:
+
+- aria2-enabled (default: true)
+- aria2-warning-enabled (default: true)
+- [aria2-retry-wait](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-retry-wait) (default: 2)
+- [aria2-split](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-s) (default: 5)
+- [aria2-max-connection-per-server](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-x) (default: 5)
+- [aria2-min-split-size](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-k) (default: 5M)
+
+```powershell
+PS C:\Users\wch> scoop install extras/everything
+WARN  Scoop uses 'aria2c' for multi-connection downloads.
+WARN  Should it cause issues, run 'scoop config aria2-enabled false' to disable it.
+WARN  To disable this warning, run 'scoop config aria2-warning-enabled false'.
+Installing 'everything' (1.4.1.1009) [64bit]
+Starting download with aria2 ...
+```
+
+- 设置代理
+
+```powershell
+# 设置代理
+PS C:\Users\wch> scoop config proxy 127.0.0.1:19180
+
+# 查看代理
+PS C:\Users\wch> scoop config proxy
+127.0.0.1:19180
+
+# 删除代理，删除后如果未生效，则打开新的Powershell窗口
+PS C:\Users\wch> scoop config rm proxy
+'proxy' has been removed
+```
+
