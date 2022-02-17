@@ -4,7 +4,7 @@
         <p>
             <a>
                 <img
-                    src="https://ci.appveyor.com/api/projects/status/3k5hn9361lyf5r6a?svg=true"
+                    src="https://img.shields.io/github/workflow/status/wholegale39/onetab/Excavator.svg"
                 />
             </a>
         </p>
