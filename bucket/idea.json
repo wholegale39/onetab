@@ -1,11 +1,11 @@
 {
-    "version": "2022.3.1",
+    "version": "2022.3.2",
     "description": "IntelliJ IDEA Community Edition for JVM and Android development.",
     "homepage": "https://www.jetbrains.com/idea/",
     "license": "Apache-2.0",
     "notes": "Please restart your command line for changes to take effect.",
-    "url": "https://download.jetbrains.com/idea/ideaIC-2022.3.1.win.zip",
-    "hash": "efb1575ba6a18cdd87b5719ef47c56e62024c453948b418a4ec51d890dff4a97",
+    "url": "https://download.jetbrains.com/idea/ideaIC-2022.3.2.win.zip",
+    "hash": "f39db86d0e70508066fefc4297d70c02f31b9a261deb1fa46f4deb9f1a1f3259",
     "env_add_path": "bin",
     "architecture": {
         "64bit": {
