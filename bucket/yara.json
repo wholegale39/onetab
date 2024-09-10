@@ -1,12 +1,12 @@
 {
-    "version": "4.2.2-2012",
+    "version": "4.5.2-2326",
     "description": "A malware samples pattern matching tool.",
     "homepage": "https://virustotal.github.io/yara/",
     "license": "BSD-3-Clause",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/VirusTotal/yara/releases/download/v4.2.2/yara-v4.2.2-2012-win64.zip",
-            "hash": "6100466ef36478488e7b295933c946c2fc4b3d31e641bb904da186c0ea151c3f",
+            "url": "https://github.com/VirusTotal/yara/releases/download/v4.5.2/yara-v4.5.2-2326-win64.zip",
+            "hash": "9f934cc4c5de653324a5714736077f57667a06009bee7984d960634ae0662dc6",
             "bin": [
                 [
                     "yara64.exe",
@@ -19,8 +19,8 @@
             ]
         },
         "32bit": {
-            "url": "https://github.com/VirusTotal/yara/releases/download/v4.2.2/yara-v4.2.2-2012-win32.zip",
-            "hash": "bf35bc3b139728c993b50fcf3e8b7bc26591d057b4ee5b474ffcbc5ecce73e7e",
+            "url": "https://github.com/VirusTotal/yara/releases/download/v4.5.2/yara-v4.5.2-2326-win32.zip",
+            "hash": "c7a8584133f4438764b8f247489c0c121b16422fd65b76d7a1a754da79fe5f25",
             "bin": [
                 [
                     "yara32.exe",
