@@ -1,10 +1,10 @@
 {
-    "version": "2.57",
+    "version": "2.57.1",
     "description": "Light-weight and easy-to-use password manager",
     "homepage": "https://keepass.info",
     "license": "GPL-2.0-or-later",
-    "url": "https://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.57/KeePass-2.57.zip",
-    "hash": "6fa6c3a240a988447151bda939035f55bb97e937b3d9f1f7d46a807154c64e4c",
+    "url": "https://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.57.1/KeePass-2.57.1.zip",
+    "hash": "63be7539a223bc217bc4c13403f1a61a7d54e4c5b5c8abd3c94b78dba161675a",
     "pre_install": "if (Test-Path \"$persist_dir\\KeePass.config.xml\") { Copy-Item \"$persist_dir\\KeePass.config.xml\" \"$dir\" }",
     "uninstaller": {
         "script": "if (Test-Path \"$dir\\KeePass.config.xml\") { Copy-Item \"$dir\\KeePass.config.xml\" \"$persist_dir\" -Force }"
