@@ -1,5 +1,5 @@
 {
-    "version": "2024.2.3",
+    "version": "2024.2.4",
     "description": "The Python IDE for Professional Developers.",
     "homepage": "https://www.jetbrains.com/pycharm/",
     "license": {
@@ -7,8 +7,8 @@
         "url": "https://www.jetbrains.com/legal/agreements/user.html"
     },
     "notes": "Please restart your command line for changes to take effect.",
-    "url": "https://download.jetbrains.com/python/pycharm-community-2024.2.3.exe#/dl.7z",
-    "hash": "15e86dc484c8c76edee4349a94c51b4b9eea85a786b1334cad1c0cd8a92b8b60",
+    "url": "https://download.jetbrains.com/python/pycharm-community-2024.2.4.exe#/dl.7z",
+    "hash": "2bd9c4ae8d6626db437f9c83b08200cbfdd73214c765e4291152d88b35d6596e",
     "architecture": {
         "64bit": {
             "bin": [
