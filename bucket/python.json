@@ -1,5 +1,5 @@
 {
-    "version": "3.13.1",
+    "version": "3.13.2",
     "description": "A programming language that lets you work quickly and integrate systems more effectively.",
     "homepage": "https://www.python.org/",
     "license": "Python-2.0",
@@ -7,24 +7,24 @@
     "architecture": {
         "64bit": {
             "url": [
-                "https://www.python.org/ftp/python/3.13.1/python-3.13.1-amd64.exe#/setup.exe",
+                "https://www.python.org/ftp/python/3.13.2/python-3.13.2-amd64.exe#/setup.exe",
                 "https://raw.githubusercontent.com/ScoopInstaller/Main/master/scripts/python/install-pep-514.reg",
                 "https://raw.githubusercontent.com/ScoopInstaller/Main/master/scripts/python/uninstall-pep-514.reg"
             ],
             "hash": [
-                "6b33fa9a439a86f553f9f60e538ccabc857d2f308bc77c477c04a46552ade81f",
+                "9aaa1075d0bd3e8abd0623d2d05de692ff00780579e1b232f259028bac19bb51",
                 "c2611c8010979a47cdeea1af17d5061d8df40c5356fd8c2f3ba9492d516a99d1",
                 "d9309423b693ed63aea6b1fbfc0c34f16842cdca22a1b3edef283b87567a53b9"
             ]
         },
         "32bit": {
             "url": [
-                "https://www.python.org/ftp/python/3.13.1/python-3.13.1.exe#/setup.exe",
+                "https://www.python.org/ftp/python/3.13.2/python-3.13.2.exe#/setup.exe",
                 "https://raw.githubusercontent.com/ScoopInstaller/Main/master/scripts/python/install-pep-514.reg",
                 "https://raw.githubusercontent.com/ScoopInstaller/Main/master/scripts/python/uninstall-pep-514.reg"
             ],
             "hash": [
-                "f9ef49fc0b41ad9dc5759992a1f455e27f13ad4037cfc1961d859773ca96e7ba",
+                "91db843dc0ced6a760ef4ba242cc8b9a0a48c227e799aeac0410fd418e248445",
                 "c2611c8010979a47cdeea1af17d5061d8df40c5356fd8c2f3ba9492d516a99d1",
                 "d9309423b693ed63aea6b1fbfc0c34f16842cdca22a1b3edef283b87567a53b9"
             ]
