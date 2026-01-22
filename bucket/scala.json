@@ -1,5 +1,5 @@
 {
-    "version": "3.7.4",
+    "version": "3.8.1",
     "description": "A modern multi-paradigm programming language designed to express common programming patterns in a concise, elegant, and type-safe way.",
     "homepage": "https://www.scala-lang.org/",
     "license": "BSD-3-Clause",
@@ -10,9 +10,9 @@
     "suggest": {
         "JDK": "java/openjdk"
     },
-    "url": "https://github.com/lampepfl/dotty/releases/download/3.7.4/scala3-3.7.4.zip",
-    "hash": "02f8d56590874d7be1102d0c339eee2bd4f240c1e3206ab30bfbc4556e09f985",
-    "extract_dir": "scala3-3.7.4",
+    "url": "https://github.com/lampepfl/dotty/releases/download/3.8.1/scala3-3.8.1.zip",
+    "hash": "892bcdc1b47c50ca45015d54ce57ccf7036ab2877395366868c52d4f203da66c",
+    "extract_dir": "scala3-3.8.1",
     "bin": [
         "bin\\scala.bat",
         "bin\\scalac.bat",
