@@ -1,5 +1,5 @@
 {
-    "version": "3.44.0",
+    "version": "3.44.1",
     "description": "Google’s mobile app SDK for crafting high-quality native interfaces on iOS and Android",
     "homepage": "https://flutter.dev",
     "license": "BSD-3-Clause",
@@ -14,11 +14,11 @@
         ]
     },
     "url": [
-        "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.44.0-stable.zip",
+        "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.44.1-stable.zip",
         "https://raw.githubusercontent.com/lukesampson/scoop-extras/master/scripts/flutter-dev-setup.ps1"
     ],
     "hash": [
-        "88da00194893bf9543fc47c0bf31e6de978d49ffdb9c2f6e30c46dde0116c768",
+        "1e83bc8c032ea7f11a41a8f5e2853f7793ebcddacb5268cb0d3409023932091e",
         "bbd8dd269dd70d97e0224025281e55b7e2e32364d5c47e082ca7f45e33d1a613"
     ],
     "extract_dir": "flutter",
